@@ -1,0 +1,25 @@
+body {
+  font-family:monospace;
+  font-size: 18px;
+}
+
+#game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  border: 5px inset rgb(230, 145, 240);
+  margin: 0 auto;
+}
+
+button {
+  background-color: rgb(230, 145, 240);
+  border: 0px;
+  padding: 5px;
+  margin: 5px;
+  color: white;
+  text-transform: uppercase;
+}
