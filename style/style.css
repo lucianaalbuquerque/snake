@@ -14,7 +14,7 @@ body {
 
 canvas {
   border: 5px inset rgb(230, 145, 240);
-  margin: 0 auto;
+  margin: 5px auto;
   box-shadow: rgb(189, 176, 178) 5px 10px 15px;
 }
 

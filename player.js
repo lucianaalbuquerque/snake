@@ -3,13 +3,11 @@ class Player {
         this.game = game;
         this.x = x;
         this.y = y;
-        this.speedX = 0;
+        this.speedX = 10;
         this.speedY = 0;
-        this.color = '';
         this.width = 10;
         this.height = 10;
-        this.body = [];
-        this.tailLength = 1 
+        this.allCoordinates = [];
         this.gradient = ['gray', 'yellow', 'orange', 'red', 'pink', 'purple', 'blue', 'cyan', 'green'];
     }
 
@@ -31,35 +29,46 @@ class Player {
       }
   
       crashWith(obstacle) {
-        return !(
-          this.bottom() < obstacle.top() ||
-          this.top() > obstacle.bottom() ||
-          this.right() < obstacle.left() ||
-          this.left() > obstacle.right()
+        return (
+          this.bottom() == obstacle.bottom() &&
+          this.top() == obstacle.top() &&
+          this.right() == obstacle.right() &&
+          this.left() == obstacle.left()
         );
       }
 
     draw() {
-        
-        //for loop here with all gradient colors.
+      /* this.snakeBody.push(new Player(this.x, this.y)); */
+      this.game.ctx.fillStyle = this.gradient[5];
+      this.game.ctx.fillRect(this.x, this.y, this.width, this.height);
 
-        this.game.ctx.fillStyle = this.gradient[6];
-        for (let i=0; i < this.body.length; i++) {
-            let part = this.body[i];
+      this.allCoordinates.unshift({positionX: this.x, positionY: this.y})
+
+      for (let i=0; i < this.game.score; i++) {
+        this.game.ctx.fillStyle = this.gradient[i+1];
+        console.log(this.allCoordinates[i])
+        this.game.ctx.fillRect(this.allCoordinates[i].positionX, this.allCoordinates[i].positionY, this.width, this.height);
+      }
+    }
+
+      
+/*      var itemToRemove = this.snakeBody.shift();
+        this.game.ctx.clearRect(itemToRemove[0], itemToRemove[1], 10, 10) */
+        
+
+/*         this.game.ctx.fillStyle = this.gradient[6];
+        for (let i=0; i < this.snakeBody.length; i++) {
+            let part = this.snakeBody[i];
             this.game.ctx.fillRect(part.x +10, part.y+10, this.width, this.height) //
         }
 
-        this.body.push(new Player(this.x, this.y));
-        console.log('body length:', this.body.length);
-        console.log('taillength:', this.tailLength);
-        if (this.body.length > this.tailLength) {
-            this.body.shift();
-
+        this.snakeBody.push(new Player(this.x, this.y));
+        if (this.snakeBody.length > this.tailLength) {
+            this.snakeBody.shift();
         }
 
         this.game.ctx.fillStyle = this.gradient[5];
-        this.game.ctx.fillRect(this.x, this.y, this.width, this.height)
-    }
+        this.game.ctx.fillRect(this.x, this.y, this.width, this.height) */
 
 
 }
