@@ -1,6 +1,8 @@
 body {
   font-family:monospace;
   font-size: 18px;
+  margin:0px;
+  padding: 0px;
 }
 
 #game {
@@ -13,6 +15,7 @@ body {
 canvas {
   border: 5px inset rgb(230, 145, 240);
   margin: 0 auto;
+  box-shadow: rgb(189, 176, 178) 5px 10px 15px;
 }
 
 button {

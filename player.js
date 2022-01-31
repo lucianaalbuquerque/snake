@@ -3,10 +3,13 @@ class Player {
         this.game = game;
         this.x = x;
         this.y = y;
+        this.speedX = 0;
+        this.speedY = 0;
         this.color = '';
         this.width = 10;
         this.height = 10;
-        this.body = []; 
+        this.body = [];
+        this.tailLength = 1 
         this.gradient = ['gray', 'yellow', 'orange', 'red', 'pink', 'purple', 'blue', 'cyan', 'green'];
     }
 
@@ -37,12 +40,26 @@ class Player {
       }
 
     draw() {
+        
+        //for loop here with all gradient colors.
+
+        this.game.ctx.fillStyle = this.gradient[6];
+        for (let i=0; i < this.body.length; i++) {
+            let part = this.body[i];
+            this.game.ctx.fillRect(part.x +10, part.y+10, this.width, this.height) //
+        }
+
+        this.body.push(new Player(this.x, this.y));
+        console.log('body length:', this.body.length);
+        console.log('taillength:', this.tailLength);
+        if (this.body.length > this.tailLength) {
+            this.body.shift();
+
+        }
+
         this.game.ctx.fillStyle = this.gradient[5];
         this.game.ctx.fillRect(this.x, this.y, this.width, this.height)
     }
 
-    advance() {
-        this.player.x += // last movement1;
-        this.player.y += // last movement2;
-    }
+
 }
