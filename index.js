@@ -1,8 +1,14 @@
 window.onload = () => {
+    window.addEventListener('keydown', (event) => { 
+        if (event.code === 'Space') { 
+        startGame();
+        }
+    })
+    
     const startBtn = document.getElementById('start');
     startBtn.addEventListener('click', () => {
         startGame();
-})
+    }) 
 }
 
 function startGame() {

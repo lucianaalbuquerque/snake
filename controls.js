@@ -31,12 +31,7 @@ class Controls {
                         this.player.speedX = 0;
                     }
                     break;
-                
-/*                     default:
-                        this.player.speedY = 0;
-                        this.player.speedX = 0;
-                    break; */
-            }
+                }
         });
     }
 } 

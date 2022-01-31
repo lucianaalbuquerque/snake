@@ -9,7 +9,7 @@ class Game {
         this.frames = 0;
         this.speed = 5;
         this.player = null; 
-        this.obstacles = [];
+        this.obstaclesArr = [];
         this.target = [];
         this.intervalId = null;
         this.score = 1;
@@ -19,6 +19,7 @@ class Game {
 
 start() {
     this.player = new Player(this, 340, 300);
+    this.createObstacle();
 
     const controls = new Controls(this);
     controls.keyboardEvents();
@@ -28,12 +29,12 @@ start() {
 
 update() {
     this.clear();
-    this.createObstacle();
     this.createTarget();
     this.changeSnakePos();
+    //this.drawObstacles();
     this.player.draw();
-  /*  this.checkMistake(); //erro no player
-    this.checkTargetCollision() */
+    this.checkMistake(); 
+ /*   this.checkTargetCollision() */
     this.frames++
     this.drawScore();
 
@@ -47,17 +48,26 @@ clear() {
 };
 
 createObstacle() {
-    for (let i = 0; i <= this.gradient.length/2; i++) { //CRIAR CONDICAO PRA NAO SE SOBREPOR, NAO SOBREPOR SNAKEBODY OU ESPAÇAMENTO?.
-    /*     const randomColor = this.gradient.forEach((color) => {console.log (color.toString())}); */
-        this.obstacles.push(new ObstacleBlock(this));
-        this.obstacles[i].draw(this.gradient[3]) 
+    for (let i = 0; i <= this.gradient.length/3; i++) { 
+    //  CRIAR CONDICAO PRA NAO SE SOBREPOR, NAO SOBREPOR SNAKEBODY OU ESPAÇAMENTO?.
+    //  const randomColor = this.gradient.forEach((color) => {console.log (color.toString())}); 
+        this.obstaclesArr.push(new ObstacleBlock(this));
+        this.obstaclesArr[i].draw(this.gradient[3])
     } 
 }
+
+    drawObstacles() {
+    for (let i=0; i<=this.obstaclesArr.length; i++) {
+        let oneObstacle = this.obstaclesArr[i];
+        oneObstacle.draw(this.gradient[3]);
+        console.log(this.obstaclesArr)
+    }
+} 
 
 changeSnakePos() {
     this.player.x = this.player.x + this.player.speedX;
     this.player.y = this.player.y + this.player.speedY;
-    // b o r d e r s :
+    // c a n v a s  b o r d e r s :
     if (this.player.left() > this.canvas.width) {
         this.player.x = 0;
     } else if (this.player.right() <= 0) {
@@ -69,10 +79,10 @@ changeSnakePos() {
     }
 }
 
-createTarget() { // ESTA TODO ERRADO, SO TESTES!
+createTarget() { // ESTA NO LUGAR ERRADO, SO TESTES!
     this.ctx.fillStyle = this.gradient[7];
     this.ctx.fillRect(200, 200, 10, 10);
-    this.target.push(new ObstacleBlock(this));
+//    this.target.push(new ObstacleBlock(this));
     if (this.player.x === 200 && this.player.y === 200) {
         //draw a new target just changing x y  in a random way and next color.
         this.player.bodyLength++
@@ -87,24 +97,24 @@ createTarget() { // ESTA TODO ERRADO, SO TESTES!
     if (crashed) {
 
     }
-}
+}*/
 
 checkMistake() {
     const snake = this.player;
-    const crashed = this.obstacles.some(function (obstacle) {
+    const crashed = this.obstaclesArr.some(function (obstacle) {
       return snake.crashWith(obstacle); 
     });
     if (crashed) {
-        console.log(this.obstacles)
+        console.log(this.obstaclesArr)
         clearTimeout(this.intervalId);
-        this.lifes-- // substituir por um efeito.
+        this.lifes-- // adicionar efeito.
     }
-} */
+} 
 
 drawScore() {
     let score = Math.floor(this.frames/10);
     this.ctx.font = '16px monospace';
-    this.ctx.fillStyle = 'paleturquoise';
+    this.ctx.fillStyle = 'rgb(255,150,0)';
     this.ctx.fillText(`Score: ${this.score} / Lifes: ${this.lifes}`, 500, 20);
 }
 

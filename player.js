@@ -38,7 +38,6 @@ class Player {
       }
 
     draw() {
-      /* this.snakeBody.push(new Player(this.x, this.y)); */
       this.game.ctx.fillStyle = this.gradient[5];
       this.game.ctx.fillRect(this.x, this.y, this.width, this.height);
 
@@ -46,29 +45,8 @@ class Player {
 
       for (let i=0; i < this.game.score; i++) {
         this.game.ctx.fillStyle = this.gradient[i+1];
-        console.log(this.allCoordinates[i])
         this.game.ctx.fillRect(this.allCoordinates[i].positionX, this.allCoordinates[i].positionY, this.width, this.height);
       }
     }
-
-      
-/*      var itemToRemove = this.snakeBody.shift();
-        this.game.ctx.clearRect(itemToRemove[0], itemToRemove[1], 10, 10) */
-        
-
-/*         this.game.ctx.fillStyle = this.gradient[6];
-        for (let i=0; i < this.snakeBody.length; i++) {
-            let part = this.snakeBody[i];
-            this.game.ctx.fillRect(part.x +10, part.y+10, this.width, this.height) //
-        }
-
-        this.snakeBody.push(new Player(this.x, this.y));
-        if (this.snakeBody.length > this.tailLength) {
-            this.snakeBody.shift();
-        }
-
-        this.game.ctx.fillStyle = this.gradient[5];
-        this.game.ctx.fillRect(this.x, this.y, this.width, this.height) */
-
 
 }
