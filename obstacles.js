@@ -5,7 +5,7 @@ class ObstacleBlock {
         this.y = Math.floor(Math.random() * (this.game.height/10) +1) * 10; 
         this.width = 10;
         this.height = 10;
-      //  this.color = color;
+      //this.color = color;
     }
 
     left() {

@@ -10,16 +10,18 @@ class Game {
         this.speed = 5;
         this.player = null; 
         this.obstaclesArr = [];
-        this.target = [];
+        this.targetArr = []; // is it necessary? use it for scores?
         this.intervalId = null;
         this.score = 1;
-        this.lifes = 3;
+        this.lifes = 10;
+        this.level = 1;
         this.gradient = ['gray', 'yellow', 'orange', 'rgb(255,105,105)', 'pink', 'purple', 'blue', 'cyan', 'green']; //player.gradient; aqui ou no target ou no player?
 }
 
 start() {
     this.player = new Player(this, 340, 300);
     this.createObstacle();
+    this.createTarget();
 
     const controls = new Controls(this);
     controls.keyboardEvents();
@@ -29,13 +31,13 @@ start() {
 
 update() {
     this.clear();
-    this.createTarget();
     this.changeSnakePos();
-    //this.drawObstacles();
+    this.drawObstacles();
+    this.drawTarget();
     this.player.draw();
-    this.checkMistake(); 
- /*   this.checkTargetCollision() */
-    this.frames++
+    this.checkObstacleCollison(); 
+    this.checkTargetCollision();
+    this.frames++;
     this.drawScore();
 
     this.intervalId = setTimeout(() => {
@@ -46,23 +48,6 @@ update() {
 clear() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 };
-
-createObstacle() {
-    for (let i = 0; i <= this.gradient.length/3; i++) { 
-    //  CRIAR CONDICAO PRA NAO SE SOBREPOR, NAO SOBREPOR SNAKEBODY OU ESPAÇAMENTO?.
-    //  const randomColor = this.gradient.forEach((color) => {console.log (color.toString())}); 
-        this.obstaclesArr.push(new ObstacleBlock(this));
-        this.obstaclesArr[i].draw(this.gradient[3])
-    } 
-}
-
-    drawObstacles() {
-    for (let i=0; i<=this.obstaclesArr.length; i++) {
-        let oneObstacle = this.obstaclesArr[i];
-        oneObstacle.draw(this.gradient[3]);
-        console.log(this.obstaclesArr)
-    }
-} 
 
 changeSnakePos() {
     this.player.x = this.player.x + this.player.speedX;
@@ -79,27 +64,43 @@ changeSnakePos() {
     }
 }
 
-createTarget() { // ESTA NO LUGAR ERRADO, SO TESTES!
-    this.ctx.fillStyle = this.gradient[7];
-    this.ctx.fillRect(200, 200, 10, 10);
-//    this.target.push(new ObstacleBlock(this));
-    if (this.player.x === 200 && this.player.y === 200) {
-        //draw a new target just changing x y  in a random way and next color.
-        this.player.bodyLength++
+createObstacle() {
+    for (let i = 0; i < this.level * 18; i++) { 
+    //  CRIAR CONDICAO PRA NAO SE SOBREPOR, NAO SOBREPOR SNAKEBODY OU ESPAÇAMENTO?.
+    //  const randomColor = this.gradient.forEach((color) => {console.log (color.toString())}); 
+        this.obstaclesArr.push(new ObstacleBlock(this));
+    } 
+}
+
+drawObstacles() {
+    for (let i=0; i < this.obstaclesArr.length; i++) {
+        let oneObstacle = this.obstaclesArr[i];
+        oneObstacle.draw(this.gradient[3]);
+    }
+} 
+
+createTarget() { 
+    this.targetArr.push(new Target(this));
+}
+
+drawTarget() {
+    for (let i=0; i < this.targetArr.length; i++) {
+        let nextTarget = this.targetArr[i];
+        nextTarget.draw(this.gradient[7]);
+    }
+}
+
+ checkTargetCollision() {
+    const snake = this.player;
+    const crashed = this.targetArr.some(function (target) {
+      return snake.crashWith(target); 
+    });
+    if (crashed) {
         this.score++;
     }
 }
 
-/* checkTargetCollision() {
-    const crashed = this.target.some(function (target) {
-      return this.player.crashWith(target); 
-    });
-    if (crashed) {
-
-    }
-}*/
-
-checkMistake() {
+checkObstacleCollison() {
     const snake = this.player;
     const crashed = this.obstaclesArr.some(function (obstacle) {
       return snake.crashWith(obstacle); 
@@ -115,13 +116,12 @@ drawScore() {
     let score = Math.floor(this.frames/10);
     this.ctx.font = '16px monospace';
     this.ctx.fillStyle = 'rgb(255,150,0)';
-    this.ctx.fillText(`Score: ${this.score} / Lifes: ${this.lifes}`, 500, 20);
+    this.ctx.fillText(`Score: ${this.score} / Lifes: ${this.lifes} / Level: ${this.level}`, 400, 20);
 }
 
 checkGameOver() {
     let gameOver = false;
-    if (this.player.x < 0 || this.player.y < 0) {
-        gameOver = true;
+    if (this.lifes = 0) {
         console.log("Game Over")
     }
     //if it touched wrong square 3 times;
