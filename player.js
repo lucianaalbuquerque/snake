@@ -38,16 +38,13 @@ class Player {
       }
 
     draw() {
-      this.game.ctx.fillStyle = this.gradient[5];
-      this.game.ctx.fillRect(this.x, this.y, this.width, this.height);
-
       this.allCoordinates.unshift({positionX: this.x, positionY: this.y})
 
 /*       console.log('game score', this.game.score);
       console.log('allcordinates length', this.allCoordinates.length) */
 
       for (let i=0; i < this.game.score; i++) {
-        this.game.ctx.fillStyle = this.gradient[(this.game.score - i) % 8];
+        this.game.ctx.fillStyle = this.gradient[(this.game.score - i) % 9];
         this.game.ctx.fillRect(this.allCoordinates[i].positionX, this.allCoordinates[i].positionY, this.width, this.height);
       }
     }

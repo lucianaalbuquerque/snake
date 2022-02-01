@@ -8,14 +8,15 @@ class Game {
         this.height = 600;
         this.gridSize = 10;
         this.frames = 0;
-        this.speed = 5; //Speed talvez sejam desnecessários
+        this.speed = 5; //Tudo que ta aqui é necessário.
         this.player = null; 
         this.obstaclesArr = [];
-        this.targetArr = []; // is it necessary? YES!!!
+        this.targetArr = []; 
+        this.targetColor = null;
         this.intervalId = null;
         this.score = 1;
         this.lifes = 5;
-        this.gradient = ['yellow', 'orange', 'red', 'pink', 'purple', 'blue', 'cyan', 'green', 'black']; //last [black] - wont show. and it starts on [1] - orange
+        this.gradient = ['rgb(255, 255, 100)', 'rgb(255, 127, 100)', 'rgb(255, 42, 100)', 'rgb(127, 42, 100)', 'rgb(42, 42, 100)', 'rgb(42, 127, 100)', 'rgb(42, 212, 100)', 'rgb(170, 255, 100)', 'black']; //last [black] - wont show. and it starts on [1] - orange
 }
 
 start() {
@@ -31,6 +32,7 @@ start() {
 
 update() {
     this.clear();
+    this.drawBackground()
     this.changeSnakePos();
     this.drawObstacles();
     this.drawTarget();
@@ -51,6 +53,11 @@ clear() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 };
 
+drawBackground() {
+    this.ctx.fillStyle = 'rgb(100,100,100)';
+    this.ctx.fillRect(this.x, this.y, this.width, this.height)
+}
+
 changeSnakePos() {
     this.player.x = this.player.x + this.player.speedX;
     this.player.y = this.player.y + this.player.speedY;
@@ -68,16 +75,24 @@ changeSnakePos() {
 
 createObstacle() {
     for (let i = 0; i < 15; i++) { 
-    //  CRIAR CONDICAO PRA NAO SE SOBREPOR, NAO SOBREPOR SNAKEBODY OU ESPAÇAMENTO?.
-    //  const randomColor = this.gradient.forEach((color) => {console.log (color.toString())}); 
         this.obstaclesArr.push(new ObstacleBlock(this));
     } 
 }
+   
+drawObstacles() {;
+    const obstacleColors = (i) => {
+        if (!(this.targetColor === this.gradient[(this.obstaclesArr.length - i) % 9])) {
+            console.log(!(this.targetColor === this.gradient[(this.obstaclesArr.length - i) % 9]))
+            return this.gradient[(this.obstaclesArr.length - i) % 9]
+        }
+    }
 
-drawObstacles() {
     for (let i=0; i < this.obstaclesArr.length; i++) {
         let oneObstacle = this.obstaclesArr[i];
-        oneObstacle.draw('rgb(150,150,150)'); //this.gradient[this.score+1] this.gradient[(this.score - i) % 8]
+        oneObstacle.draw(obstacleColors(i)); 
+        // 1a opção - (this.gradient[(this.obstaclesArr.length - i) % 8]) - Preciso excluir a cor do target dessa lista!!!
+        // 2a opção - this.gradient[this.score+1] 
+           //  const randomColor = this.gradient.forEach((color) => {console.log (color.toString())}); 
     }
 } 
 
@@ -93,7 +108,8 @@ createTarget() {
 drawTarget() {
     for (let i=0; i < this.targetArr.length; i++) {
         let nextTarget = this.targetArr[i];
-        nextTarget.draw(this.gradient[this.score]); 
+        nextTarget.draw(this.gradient[this.score % 9]); 
+        this.targetColor = this.gradient[this.score % 9]
     }
 }
 
@@ -107,7 +123,7 @@ drawTarget() {
         this.drawTarget();
         this.targetArr.shift();
         this.createObstacle();
-        this.drawObstacles();
+        //this.drawObstacles();
         this.score++;
     }
 }
