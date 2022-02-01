@@ -3,12 +3,12 @@ class Player {
         this.game = game;
         this.x = x;
         this.y = y;
-        this.speedX = 10;
+        this.speedX = this.game.gridSize;
         this.speedY = 0;
-        this.width = 10;
-        this.height = 10;
+        this.width = this.game.gridSize;
+        this.height = this.game.gridSize;
         this.allCoordinates = [];
-        this.gradient = ['gray', 'yellow', 'orange', 'red', 'pink', 'purple', 'blue', 'cyan', 'green'];
+        this.gradient = this.game.gradient;
     }
 
     // F O R   C R E A T I N G   C R A S H E S  -  B O R D E R S 
@@ -43,10 +43,14 @@ class Player {
 
       this.allCoordinates.unshift({positionX: this.x, positionY: this.y})
 
+/*       console.log('game score', this.game.score);
+      console.log('allcordinates length', this.allCoordinates.length) */
+
       for (let i=0; i < this.game.score; i++) {
-        this.game.ctx.fillStyle = this.gradient[i+1];
+        this.game.ctx.fillStyle = this.gradient[(this.game.score - i) % 8];
         this.game.ctx.fillRect(this.allCoordinates[i].positionX, this.allCoordinates[i].positionY, this.width, this.height);
       }
     }
-
 }
+
+// ['yellow', 'orange', 'red', 'pink', 'purple', 'blue', 'cyan', 'green', 'black']; - last [black] - wont show. and it starts on [1] - orange

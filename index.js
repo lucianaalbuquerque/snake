@@ -4,6 +4,11 @@ window.onload = () => {
         startGame();
         }
     })
+/*     window.addEventListener('keydown', (event) => { 
+        if (event.code === 'Space') { 
+        window.location.reload();
+        }
+    }) */
     
     const startBtn = document.getElementById('start');
     startBtn.addEventListener('click', () => {
