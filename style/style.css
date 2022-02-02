@@ -20,13 +20,3 @@ canvas {
   margin: 15px auto;
   border: 3px solid rgb(127, 42, 100);
 }
-
-button {
-  background-color: rgb(230, 145, 240);
-  border: 0px;
-  padding: 5px;
-  margin: 25px 5px 5px 5px;
-  color: white;
-  text-transform: uppercase;
-  align-self: flex-start;
-}

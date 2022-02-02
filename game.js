@@ -19,7 +19,6 @@ class Game {
         this.gradient = ['#840764', '#BC2C61', '#FF1B4A', '#FF6D34', '#FFC242', '#94DA5E', '#00C582', '#00744F', '#212649'];  
     }
 
-
 start() {
     this.player = new Player(this, 340, 300);
     this.createObstacle();
@@ -88,7 +87,6 @@ createObstacle() {
 drawObstacles() {;
     const obstacleColors = (i) => {
         if (!(this.targetColor === this.gradient[(this.obstaclesArr.length - i) % 9])) {
-          //  console.log(!(this.targetColor === this.gradient[(this.obstaclesArr.length - i) % 9]))
             return this.gradient[(this.obstaclesArr.length - i) % 9]
         }
     }
@@ -117,6 +115,7 @@ drawTarget() {
 }
 
  checkTargetCollision() {
+    const audio = new Audio('/docs/assets/final-increase.wav');
     const snake = this.player;
     const crashed = this.targetArr.some(function (target) {
       return snake.crashWith(target); 
@@ -127,18 +126,20 @@ drawTarget() {
         this.targetArr.shift();
         this.createObstacle();
         this.score++;
+        audio.play();
     }
 } 
 
 checkObstacleCollison() {
     const snake = this.player;
+    const audio = new Audio('/docs/assets/final-collision.wav');
     const crashed = this.obstaclesArr.some(function (obstacle) {
       return snake.crashWith(obstacle); 
     });
     if (crashed) {
         this.stop();;
         this.lifes--
-     
+        audio.play();
          // adicionar efeito.
     }
 } 
@@ -174,14 +175,16 @@ drawScore() {
 }
 
 checkGameOver() {
+    const audio = new Audio('/docs/assets/final-gameover.wav');
     let gameOver = false;
     if (this.lifes === 0) {
+        audio.play();
         this.stop();
         this.clear();
         this.ctx.font = '20px Chakra Petch, sans-serif';
         this.ctx.fillStyle = 'rgb(127, 42, 100)';
         this.ctx.fillText(`GAME OVER!!!                Score: ${this.score}`, 230, 300);
-        const setTimout = setTimeout(() => {document.location.reload(); console.log('gameover')}, 3000)
+        const setTimout = setTimeout(() => {document.location.reload(); console.log('gameover')}, 2100)
     }
 }
 }

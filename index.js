@@ -13,15 +13,4 @@ window.onload = () => {
         }
         }
     })
-    loadSound()
-    document.getElementById('playSound').addEventListener('click', playSound())
-}
-
-var soundID = 'thunder' 
-function loadSound () {
-    createjs.Sound.registerSound("/docs/assets/Club Insomnia.mp3", soundID);
-}
-
-function playSound() {
-    createjs.Sound.play(soundID);
 }
