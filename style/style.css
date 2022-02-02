@@ -1,29 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&family=Poiret+One&display=swap');
+
 body {
-  font-family:monospace;
+  font-family: 'Chakra Petch', sans-serif;
   font-size: 18px;
-  margin:0px;
+  margin: auto;
   padding: 0px;
+  background-color: rgb(50, 45, 50);
 }
 
 #game {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
 canvas {
-  border: 5px inset rgb(230, 145, 240);
-  margin: 5px auto;
-  box-shadow: rgb(142, 236, 165) 5px 10px 15px;
+  background-color: rgb(50, 45, 50);
+  margin: 25px auto;
+  border: 3px solid rgb(127, 42, 100);
 }
 
 button {
   background-color: rgb(230, 145, 240);
   border: 0px;
   padding: 5px;
-  margin: 5px;
+  margin: 25px 5px 5px 5px;
   color: white;
   text-transform: uppercase;
-  box-shadow: rgb(142, 236, 165) 5px 10px 15px;
+  align-self: flex-start;
 }

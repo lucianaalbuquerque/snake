@@ -9,14 +9,20 @@ window.onload = () => {
         window.location.reload();
         }
     }) */
-    
-    const startBtn = document.getElementById('start');
-    startBtn.addEventListener('click', () => {
-        startGame();
-    }) 
+    loadSound()
+    document.getElementById('playSound').addEventListener('click', playSound())
 }
 
 function startGame() {
     const snakeGame = new Game();
     snakeGame.start();
+}
+
+var soundID = 'thunder' 
+function loadSound () {
+    createjs.Sound.registerSound("/docs/assets/Club Insomnia.mp3", soundID);
+}
+
+function playSound() {
+    createjs.Sound.play(soundID);
 }

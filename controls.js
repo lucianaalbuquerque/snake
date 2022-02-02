@@ -8,25 +8,25 @@ class Controls {
         window.addEventListener('keydown', (event) => {
             switch (event.code) {
                 case 'ArrowDown':
-                    if (this.player.speedY !== -10) { //conditional for the borders
+                    if (this.player.speedY !== -10) { 
                         this.player.speedY = 10;
                         this.player.speedX = 0;
                     }
                     break;
                 case 'ArrowRight':
-                    if (this.player.speedX !== -10 ) { //conditional for the borders
+                    if (this.player.speedX !== -10 ) { 
                         this.player.speedY = 0;
                         this.player.speedX = 10;
                     }
                     break;
                 case 'ArrowLeft':
-                    if (this.player.speedX !== 10) { //conditional for the borders
+                    if (this.player.speedX !== 10) { 
                         this.player.speedY = 0;
                         this.player.speedX = -10;
                     }
                     break;
                 case 'ArrowUp':
-                    if (this.player.speedY !== 10) { //conditional for the borders
+                    if (this.player.speedY !== 10) { 
                         this.player.speedY = -10;
                         this.player.speedX = 0;
                     }

@@ -11,7 +11,8 @@ class Player {
         this.gradient = this.game.gradient;
     }
 
-    // F O R   C R E A T I N G   C R A S H E S  -  B O R D E R S 
+    //  C R E A T I N G   C R A S H E S  -  B O R D E R S 
+
     left() {
         return this.x;
       }
@@ -40,14 +41,9 @@ class Player {
     draw() {
       this.allCoordinates.unshift({positionX: this.x, positionY: this.y})
 
-/*       console.log('game score', this.game.score);
-      console.log('allcordinates length', this.allCoordinates.length) */
-
       for (let i=0; i < this.game.score; i++) {
         this.game.ctx.fillStyle = this.gradient[(this.game.score - i) % 9];
         this.game.ctx.fillRect(this.allCoordinates[i].positionX, this.allCoordinates[i].positionY, this.width, this.height);
       }
     }
 }
-
-// ['yellow', 'orange', 'red', 'pink', 'purple', 'blue', 'cyan', 'green', 'black']; - last [black] - wont show. and it starts on [1] - orange

@@ -8,7 +8,7 @@ class Game {
         this.height = 600;
         this.gridSize = 10;
         this.frames = 0;
-        this.speed = 5; //Tudo que ta aqui é necessário.
+        this.speed = 5; 
         this.player = null; 
         this.obstaclesArr = [];
         this.targetArr = []; 
@@ -16,7 +16,7 @@ class Game {
         this.intervalId = null;
         this.score = 1;
         this.lifes = 5;
-        this.gradient = ['rgb(255, 255, 100)', 'rgb(255, 127, 100)', 'rgb(255, 42, 100)', 'rgb(127, 42, 100)', 'rgb(42, 42, 100)', 'rgb(42, 127, 100)', 'rgb(42, 212, 100)', 'rgb(170, 255, 100)', 'black']; //last [black] - wont show. and it starts on [1] - orange
+        this.gradient = ['rgb(255, 255, 100)', 'rgb(255, 127, 100)', 'rgb(255, 42, 100)', 'rgb(127, 42, 100)', 'rgb(42, 42, 100)', 'rgb(42, 127, 100)', 'rgb(42, 212, 100)', 'rgb(170, 255, 100)', 'gainsboro']; //last [black] - wont show. and it starts on [1] - orange
 }
 
 start() {
@@ -54,7 +54,7 @@ clear() {
 };
 
 drawBackground() {
-    this.ctx.fillStyle = 'rgb(100,100,100)';
+    this.ctx.fillStyle = 'rgb(50, 45, 50)';
     this.ctx.fillRect(this.x, this.y, this.width, this.height)
 }
 
@@ -90,9 +90,6 @@ drawObstacles() {;
     for (let i=0; i < this.obstaclesArr.length; i++) {
         let oneObstacle = this.obstaclesArr[i];
         oneObstacle.draw(obstacleColors(i)); 
-        // 1a opção - (this.gradient[(this.obstaclesArr.length - i) % 8]) - Preciso excluir a cor do target dessa lista!!!
-        // 2a opção - this.gradient[this.score+1] 
-           //  const randomColor = this.gradient.forEach((color) => {console.log (color.toString())}); 
     }
 } 
 
@@ -123,7 +120,6 @@ drawTarget() {
         this.drawTarget();
         this.targetArr.shift();
         this.createObstacle();
-        //this.drawObstacles();
         this.score++;
     }
 }
@@ -135,7 +131,9 @@ checkObstacleCollison() {
     });
     if (crashed) {
         clearTimeout(this.intervalId);
-        this.lifes-- // adicionar efeito.
+        this.lifes--
+     
+         // adicionar efeito.
     }
 } 
     
@@ -154,9 +152,9 @@ checkSnakeCollision() {
 
 drawScore() {
     let score = Math.floor(this.frames/10);
-    this.ctx.font = '16px monospace';
-    this.ctx.fillStyle = 'rgb(255,150,0)';
-    this.ctx.fillText(`Score: ${this.score} / Lifes: ${this.lifes}`, 350, 20);
+    this.ctx.font = '16px Chakra Petch, sans-serif';
+    this.ctx.fillStyle = 'gainsboro';
+    this.ctx.fillText(`Score: ${this.score} / Lifes: ${this.lifes}`, 550, 20);
 }
 
 checkGameOver() {
@@ -164,9 +162,9 @@ checkGameOver() {
     if (this.lifes === 0) {
         clearTimeout(this.intervalId);
         this.clear();
-        this.ctx.font = '16px monospace';
-        this.ctx.fillStyle = 'rgb(255,50,50)';
-        this.ctx.fillText(`GAME OVER!!! Score: ${this.score} / Lifes: ${this.lifes}`, 120, 300);
+        this.ctx.font = '20px Chakra Petch, sans-serif';
+        this.ctx.fillStyle = 'rgb(127, 42, 100)';
+        this.ctx.fillText(`GAME OVER!!!                Score: ${this.score}`, 230, 300);
         const setTimout = setTimeout(() => {document.location.reload(); console.log('gameover')}, 4000)
         
     }
