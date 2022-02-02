@@ -1,21 +1,20 @@
 window.onload = () => {
+    const snakeGame = new Game();
+    let pause = false;
+
     window.addEventListener('keydown', (event) => { 
         if (event.code === 'Space') { 
-        startGame();
+        if (!pause) {
+            snakeGame.start();
+            pause = true;
+        } else if (pause) {
+            snakeGame.stop();
+            window.location.reload()
+        }
         }
     })
-/*     window.addEventListener('keydown', (event) => { 
-        if (event.code === 'Space') { 
-        window.location.reload();
-        }
-    }) */
     loadSound()
     document.getElementById('playSound').addEventListener('click', playSound())
-}
-
-function startGame() {
-    const snakeGame = new Game();
-    snakeGame.start();
 }
 
 var soundID = 'thunder' 

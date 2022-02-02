@@ -5,7 +5,7 @@ body {
   font-size: 18px;
   margin: auto;
   padding: 0px;
-  background-color: rgb(50, 45, 50);
+  background-color: rgb(23, 20, 48);
 }
 
 #game {
@@ -16,8 +16,8 @@ body {
 }
 
 canvas {
-  background-color: rgb(50, 45, 50);
-  margin: 25px auto;
+  background-color: rgb(23, 20, 48);
+  margin: 15px auto;
   border: 3px solid rgb(127, 42, 100);
 }
 

@@ -16,8 +16,9 @@ class Game {
         this.intervalId = null;
         this.score = 1;
         this.lifes = 5;
-        this.gradient = ['rgb(255, 255, 100)', 'rgb(255, 127, 100)', 'rgb(255, 42, 100)', 'rgb(127, 42, 100)', 'rgb(42, 42, 100)', 'rgb(42, 127, 100)', 'rgb(42, 212, 100)', 'rgb(170, 255, 100)', 'gainsboro']; //last [black] - wont show. and it starts on [1] - orange
-}
+        this.gradient = ['#840764', '#BC2C61', '#FF1B4A', '#FF6D34', '#FFC242', '#94DA5E', '#00C582', '#00744F', '#212649'];  
+    }
+
 
 start() {
     this.player = new Player(this, 340, 300);
@@ -41,6 +42,7 @@ update() {
     this.checkTargetCollision();
     this.checkSnakeCollision();
     this.frames++;
+    this.speedDecrease();
     this.drawScore();
     this.checkGameOver();
 
@@ -53,8 +55,12 @@ clear() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 };
 
+stop() {
+    clearTimeout(this.intervalId);
+}
+
 drawBackground() {
-    this.ctx.fillStyle = 'rgb(50, 45, 50)';
+    this.ctx.fillStyle = 'rgb(23, 20, 48)';
     this.ctx.fillRect(this.x, this.y, this.width, this.height)
 }
 
@@ -82,7 +88,7 @@ createObstacle() {
 drawObstacles() {;
     const obstacleColors = (i) => {
         if (!(this.targetColor === this.gradient[(this.obstaclesArr.length - i) % 9])) {
-            console.log(!(this.targetColor === this.gradient[(this.obstaclesArr.length - i) % 9]))
+          //  console.log(!(this.targetColor === this.gradient[(this.obstaclesArr.length - i) % 9]))
             return this.gradient[(this.obstaclesArr.length - i) % 9]
         }
     }
@@ -122,7 +128,7 @@ drawTarget() {
         this.createObstacle();
         this.score++;
     }
-}
+} 
 
 checkObstacleCollison() {
     const snake = this.player;
@@ -130,7 +136,7 @@ checkObstacleCollison() {
       return snake.crashWith(obstacle); 
     });
     if (crashed) {
-        clearTimeout(this.intervalId);
+        this.stop();;
         this.lifes--
      
          // adicionar efeito.
@@ -149,6 +155,16 @@ checkSnakeCollision() {
     };
 } 
 
+speedDecrease() {
+    if (this.score < 9) {
+        this.speed = 7;
+    } else if (this.score < 18) {
+        this.speed = 5;
+    } else if (this.score < 27) {
+        this.speed = 3;
+    }
+}
+
 
 drawScore() {
     let score = Math.floor(this.frames/10);
@@ -160,13 +176,12 @@ drawScore() {
 checkGameOver() {
     let gameOver = false;
     if (this.lifes === 0) {
-        clearTimeout(this.intervalId);
+        this.stop();
         this.clear();
         this.ctx.font = '20px Chakra Petch, sans-serif';
         this.ctx.fillStyle = 'rgb(127, 42, 100)';
         this.ctx.fillText(`GAME OVER!!!                Score: ${this.score}`, 230, 300);
-        const setTimout = setTimeout(() => {document.location.reload(); console.log('gameover')}, 4000)
-        
+        const setTimout = setTimeout(() => {document.location.reload(); console.log('gameover')}, 3000)
     }
 }
 }
