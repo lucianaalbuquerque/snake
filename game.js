@@ -115,7 +115,7 @@ drawTarget() {
 }
 
  checkTargetCollision() {
-    const audio = new Audio('/docs/assets/sounds/final-increase.wav');
+    const audio = new Audio('./docs/assets/sounds/final-increase.wav');
     const snake = this.player;
     const crashed = this.targetArr.some(function (target) {
       return snake.crashWith(target); 
@@ -179,12 +179,12 @@ drawScore() {
 }
 
 checkGameOver() {
-    const audio = new Audio('/docs/assets/sounds/final-gameover.wav');
+    const audio = new Audio('./docs/assets/sounds/final-gameover.wav');
     let gameOver = false;
     if (this.lifes === 0) {
         audio.play();
-        this.stop();
         this.clear();
+        this.stop();
         this.ctx.font = '20px Chakra Petch, sans-serif';
         this.ctx.fillStyle = 'rgb(127, 42, 100)';
         this.ctx.fillText(`GAME OVER!!!                Score: ${this.score}`, 230, 300);
