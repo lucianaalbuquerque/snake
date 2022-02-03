@@ -173,6 +173,7 @@ drawScore() {
     let score = document.getElementById('score')
     score.innerHTML = `Score: ${this.score} / Lifes: ${this.lifes}`;
 
+
 /*     this.ctx.font = '16px Chakra Petch, sans-serif';
     this.ctx.fillStyle = 'gainsboro';
     this.ctx.fillText(`Score: ${this.score} / Lifes: ${this.lifes}`, 550, 20); */

@@ -9,28 +9,31 @@
 </head>
 <body>
     <div id="display">
-    <button id="instructionBtn">Instruction</button>
-    <p id="instructionTxt">Use the arrow keys to move the Rainbow Snake around the board. Find the color head of the snake and eat it! Don't let the snake move into itself.  The goal is to make the snake as large and colourful as possible before that happens! Good luck!</p>
-    </div>
-    <div id="game">
-        <p id="score">SCORE</p>
-        <canvas id="canvas" width="700" height="600"></canvas>
+        <div id="info"> 
+            <button id="instructionBtn">Instruction</button>
+            <p id="score">SCORE</p>
+        </div>
 
-    <div id="title">
-        <h1>Rainbow Snake</h1>
-        <h2>Eat a color!</h2>
-        <p>Press spacebar to start.</p>
+        <p id="instructionTxt">Use the arrow keys to move the Rainbow Snake around the board. <br> Find the same color of the snake head and eat it! <br> Don't let the snake move into itself. Good luck!</p>
+        
+        <div id="game">
+            <canvas id="canvas" width="700" height="600"></canvas>
+            <div id="title">
+                <h1>Rainbow Snake</h1>
+                <h2>Eat a color!</h2>
+                <p>Press spacebar to start.</p>
+            </div>
+        </div>
     </div>
 
-    </div>
+        <script src="https://code.createjs.com/1.0.0/soundjs.min.js"></script>
+        <script src="target.js"></script>
+        <script src="obstacles.js"></script>
+        <script src="controls.js"></script>
+        <script src="player.js"></script>
+        <script src="game.js"></script>
+        <script src="index.js"></script>
 
-    <script src="https://code.createjs.com/1.0.0/soundjs.min.js"></script>
-    <script src="target.js"></script>
-    <script src="obstacles.js"></script>
-    <script src="controls.js"></script>
-    <script src="player.js"></script>
-    <script src="game.js"></script>
-    <script src="index.js"></script>
     </div>
 </body>
 </html>
