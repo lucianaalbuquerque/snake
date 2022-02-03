@@ -11,6 +11,7 @@ class Game {
         this.speed = 5; 
         this.player = null; 
         this.obstaclesArr = [];
+        this.obstaclesQty = 15;
         this.targetArr = []; 
         this.targetColor = null;
         this.intervalId = null;
@@ -71,7 +72,7 @@ changeSnakePos() {
     // c a n v a s  b o r d e r s :
     if (this.player.left() > this.canvas.width - this.player.width) {
         this.player.x = 0;
-    } else if (this.player.right() < 0) {
+    } else if (this.player.right() <= 0) {
         this.player.x = this.canvas.width - this.player.width;
     } else if (this.player.top() < 0) {
         this.player.y = this.canvas.height - this.player.height;
@@ -81,7 +82,7 @@ changeSnakePos() {
 }
 
 createObstacle() {
-    for (let i = 0; i < 15; i++) { 
+    for (let i = 0; i < this.obstaclesQty; i++) { 
         this.obstaclesArr.push(new ObstacleBlock(this));
     } 
 }
@@ -162,9 +163,9 @@ speedDecrease() {
     if (this.score < 9) {
         this.speed = 7;
     } else if (this.score < 18) {
-        this.speed = 5;
+        this.speed = 6;
     } else if (this.score < 27) {
-        this.speed = 3;
+        this.speed = 5;
     }
 }
 
@@ -176,11 +177,12 @@ drawScore() {
 
 checkGameOver() {
     const audio = new Audio('./docs/assets/sounds/final-gameover.wav');
-    let gameOver = false;
+    //let gameOver = false;
     if (this.lifes === 0) {
+        this.stop();
         audio.play();
         this.clear();
-        this.stop();
+        
         let gameoverTxt = document.getElementById('gameoverTxt');
         document.getElementById('gameover').style.display = 'flex';
         if (this.score == 1 ) {
@@ -188,7 +190,8 @@ checkGameOver() {
         } else if (this.score > 1) {
             gameoverTxt.innerHTML = `G A M E O V E R<br><br> You got ${this.score} colors!`;
         }
-        const setTimout = setTimeout(() => {document.location.reload();}, 1250)
+
+        const setTimout = setTimeout(() => {document.location.reload();}, 1500)
     }
 }
 
