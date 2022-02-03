@@ -115,7 +115,7 @@ drawTarget() {
 }
 
  checkTargetCollision() {
-    const audio = new Audio('/docs/assets/final-increase.wav');
+    const audio = new Audio('/docs/assets/sounds/final-increase.wav');
     const snake = this.player;
     const crashed = this.targetArr.some(function (target) {
       return snake.crashWith(target); 
@@ -132,7 +132,7 @@ drawTarget() {
 
 checkObstacleCollison() {
     const snake = this.player;
-    const audio = new Audio('/docs/assets/final-collision.wav');
+    const audio = new Audio('/docs/assets/sounds/final-collision.wav');
     const crashed = this.obstaclesArr.some(function (obstacle) {
       return snake.crashWith(obstacle); 
     });
@@ -168,14 +168,18 @@ speedDecrease() {
 
 
 drawScore() {
-    let score = Math.floor(this.frames/10);
+/*     let div = document.querySelector('.game');
+    let p = document.createElement('p');
+    p.innerHTML += 'JS DOM';
+    div.appendChild(p); */
+
     this.ctx.font = '16px Chakra Petch, sans-serif';
     this.ctx.fillStyle = 'gainsboro';
     this.ctx.fillText(`Score: ${this.score} / Lifes: ${this.lifes}`, 550, 20);
 }
 
 checkGameOver() {
-    const audio = new Audio('/docs/assets/final-gameover.wav');
+    const audio = new Audio('/docs/assets/sounds/final-gameover.wav');
     let gameOver = false;
     if (this.lifes === 0) {
         audio.play();

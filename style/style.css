@@ -17,6 +17,12 @@ body {
 
 canvas {
   background-color: rgb(23, 20, 48);
-  margin: 15px auto;
+  margin: 25px auto;
   border: 3px solid rgb(127, 42, 100);
+}
+
+p {
+  color: white;
+  font-size: .8rem;
+  width: 20%;
 }
