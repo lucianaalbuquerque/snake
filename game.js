@@ -6,7 +6,7 @@ class Game {
         this.y = 0;
         this.width = 700;
         this.height = 600;
-        this.gridSize = 20;
+        this.gridSize = 10;
         this.frames = 0;
         this.speed = 5; 
         this.player = null; 
@@ -188,8 +188,7 @@ checkGameOver() {
         } else if (this.score > 1) {
             gameoverTxt.innerHTML = `G A M E O V E R<br><br> You got ${this.score} colors!`;
         }
-
-        const setTimout = setTimeout(() => {document.location.reload();}, 2100)
+        const setTimout = setTimeout(() => {document.location.reload();}, 1250)
     }
 }
 
