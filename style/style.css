@@ -40,7 +40,7 @@ button {
   padding: 10px 20px;
   display: none;
   position: relative;
-  left: -85px;
+  left: -65px;
 }
 
 #game {
@@ -83,3 +83,14 @@ p {
   text-align:center;
 }
 
+#gameover {
+  display: none;
+  flex-direction: column;
+  width: 80%;
+  position: relative;
+  top: -350px; 
+}
+
+#gameoverTxt {
+  font-size: 1rem;
+}

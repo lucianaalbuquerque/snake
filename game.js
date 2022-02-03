@@ -6,7 +6,7 @@ class Game {
         this.y = 0;
         this.width = 700;
         this.height = 600;
-        this.gridSize = 10;
+        this.gridSize = 20;
         this.frames = 0;
         this.speed = 5; 
         this.player = null; 
@@ -172,11 +172,6 @@ speedDecrease() {
 drawScore() {    
     let score = document.getElementById('score')
     score.innerHTML = `Score: ${this.score} / Lifes: ${this.lifes}`;
-
-
-/*     this.ctx.font = '16px Chakra Petch, sans-serif';
-    this.ctx.fillStyle = 'gainsboro';
-    this.ctx.fillText(`Score: ${this.score} / Lifes: ${this.lifes}`, 550, 20); */
 }
 
 checkGameOver() {
@@ -186,11 +181,17 @@ checkGameOver() {
         audio.play();
         this.clear();
         this.stop();
-        this.ctx.font = '20px Chakra Petch, sans-serif';
-        this.ctx.fillStyle = 'rgb(127, 42, 100)';
-        this.ctx.fillText(`GAME OVER!!!                Score: ${this.score}`, 230, 300);
-        const setTimout = setTimeout(() => {document.location.reload(); console.log('gameover')}, 2100)
+        let gameoverTxt = document.getElementById('gameoverTxt');
+        document.getElementById('gameover').style.display = 'flex';
+        if (this.score == 1 ) {
+            gameoverTxt.innerHTML = `G A M E O V E R<br> You haven't found any color!`
+        } else if (this.score > 1) {
+            gameoverTxt.innerHTML = `G A M E O V E R<br><br> You got ${this.score} colors!`;
+        }
+
+        const setTimout = setTimeout(() => {document.location.reload();}, 2100)
     }
 }
+
 }
 
