@@ -3,9 +3,38 @@
 body {
   font-family: 'Chakra Petch', sans-serif;
   font-size: 18px;
-  margin: auto;
+  margin: 0 auto;
   padding: 0px;
   background-color: rgb(23, 20, 48);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: gainsboro;
+}
+
+#display {
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+button {
+  background-color: rgb(23, 20, 48);
+  border: 2px solid rgb(127, 42, 100);
+  color:gainsboro;
+  font-size: 0.7rem;
+  margin: 5px;
+  padding:5px;
+  position: relative;
+  top: 20px;
+}
+
+#instructionTxt {
+  width: 35%;
+  text-align: justify;
+  background-color: rgba(216, 216, 216, 0.185);
+  padding: 10px;
+  display: none;
 }
 
 #game {
@@ -21,8 +50,32 @@ canvas {
   border: 3px solid rgb(127, 42, 100);
 }
 
-p {
-  color: white;
-  font-size: .8rem;
-  width: 20%;
+#title{
+  display:flex;
+  flex-direction: column;
+  width: 80%;
+  position: relative;
+  top: 60%;
+  right: 50%;
 }
+
+h1 {
+  color: gainsboro;
+  font-size: 1.2rem;
+  text-align:center;
+}
+
+h2 {
+  color: rgba(255, 82, 226, 0.781);
+  font-size: 1rem;
+  text-align:center;
+  position: relative;
+  top: -20px;
+}
+
+p {
+  color: gainsboro;
+  font-size: .8rem;
+  text-align:center;
+}
+

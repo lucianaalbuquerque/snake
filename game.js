@@ -20,9 +20,11 @@ class Game {
     }
 
 start() {
+    const audio = new Audio('./docs/assets/sounds/mixkit-target.wav');
     this.player = new Player(this, 340, 300);
     this.createObstacle();
     this.createTarget();
+    audio.play();
 
     const controls = new Controls(this);
     controls.keyboardEvents();
@@ -132,7 +134,7 @@ drawTarget() {
 
 checkObstacleCollison() {
     const snake = this.player;
-    const audio = new Audio('/docs/assets/sounds/final-collision.wav');
+    const audio = new Audio('./docs/assets/sounds/final-collision.wav');
     const crashed = this.obstaclesArr.some(function (obstacle) {
       return snake.crashWith(obstacle); 
     });
@@ -167,15 +169,13 @@ speedDecrease() {
 }
 
 
-drawScore() {
-/*     let div = document.querySelector('.game');
-    let p = document.createElement('p');
-    p.innerHTML += 'JS DOM';
-    div.appendChild(p); */
+drawScore() {    
+    let score = document.getElementById('score')
+    score.innerHTML = `Score: ${this.score} / Lifes: ${this.lifes}`;
 
-    this.ctx.font = '16px Chakra Petch, sans-serif';
+/*     this.ctx.font = '16px Chakra Petch, sans-serif';
     this.ctx.fillStyle = 'gainsboro';
-    this.ctx.fillText(`Score: ${this.score} / Lifes: ${this.lifes}`, 550, 20);
+    this.ctx.fillText(`Score: ${this.score} / Lifes: ${this.lifes}`, 550, 20); */
 }
 
 checkGameOver() {

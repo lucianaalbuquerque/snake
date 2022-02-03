@@ -5,7 +5,7 @@ class Controls {
     }
 
     keyboardEvents() {
-        const audio = new Audio('/docs/assets/sounds/mixkit-move.wav');
+        const audio = new Audio('./docs/assets/sounds/mixkit-move.wav');
         window.addEventListener('keydown', (event) => {
             switch (event.code) {
                 case 'ArrowDown':
