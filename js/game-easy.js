@@ -104,7 +104,6 @@ createTarget() {
     const nextTarget = new Target(this);
     const checkPlace = this.obstaclesArr.some((el) => el.x !== nextTarget.x && el.y !== nextTarget.y);
       if (checkPlace) {
-        console.log('next target X, Y:', nextTarget.x, nextTarget.y); 
         this.targetArr.push(nextTarget);
       }
 }

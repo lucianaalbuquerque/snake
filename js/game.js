@@ -177,7 +177,6 @@ drawScore() {
 
 checkGameOver() {
     const audio = new Audio('./docs/assets/sounds/final-gameover.wav');
-    //let gameOver = false;
     if (this.lifes === 0) {
         this.stop();
         audio.play();
