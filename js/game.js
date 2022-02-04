@@ -7,7 +7,7 @@ class Game {
         this.width = 700;
         this.height = 600;
         this.gridSize = 10;
-        this.level = 'pro'
+        this.level = level;
         this.frames = 0;
         this.speed = 5; 
         this.player = null; 
