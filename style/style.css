@@ -21,6 +21,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   width: 706px;
+  row-gap: 30px;
 }
 
 
@@ -31,7 +32,23 @@ button {
   font-size: 0.7rem;
   margin: 5px;
   padding:5px;
+  width:100px;
 }
+
+#easy {
+  width:100px;
+  flex-grow: 1;
+}
+
+#pro {
+  width:100px;
+  flex-grow: 1;
+}
+
+#score {
+  flex-grow: 2;
+}
+
 
 #instructionTxt {
   width: 35%;

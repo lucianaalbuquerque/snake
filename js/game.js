@@ -1,5 +1,5 @@
 class Game {
-    constructor() {
+    constructor(level) {
         this.canvas = document.getElementById('canvas');
         this.ctx = canvas.getContext('2d')
         this.x = 0;
@@ -7,6 +7,7 @@ class Game {
         this.width = 700;
         this.height = 600;
         this.gridSize = 10;
+        this.level = 'pro'
         this.frames = 0;
         this.speed = 5; 
         this.player = null; 
@@ -104,7 +105,6 @@ createTarget() {
     const nextTarget = new Target(this);
     const checkPlace = this.obstaclesArr.some((el) => el.x !== nextTarget.x && el.y !== nextTarget.y);
       if (checkPlace) {
-        console.log('next target X, Y:', nextTarget.x, nextTarget.y); 
         this.targetArr.push(nextTarget);
       }
 }
@@ -166,6 +166,17 @@ speedDecrease() {
         this.speed = 6;
     } else if (this.score < 27) {
         this.speed = 5;
+    }
+}
+
+checkLevel() {
+    if (this.level === 'pro') {
+        this.gridSize = 10;
+        this.obstaclesQty = 15;
+    } else if (this.level === 'easy') {
+        this.gridSize = 20;
+        this.obstaclesQty = 10;
+        this.speed = 4;
     }
 }
 
